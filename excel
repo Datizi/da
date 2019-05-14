@@ -1,0 +1,26 @@
+#合并目录下的相同字段excel文件
+import os,xlrd,xlsxwriter
+global ss
+ss=0
+os.chdir(r'C:\Users\liuhu\Desktop\项目05多场景下的算法构建') #选择路径
+df=[]
+list = os.listdir(r'C:\Users\liuhu\Desktop\项目05多场景下的算法构建')#选择路径遍历文件夹内表名
+for book in list:
+    data=xlrd.open_workbook(book)#打开表
+    for s in data.sheet_names():#遍历表内工作簿
+        sheet=data.sheet_by_name(s)
+        rows=sheet.nrows#统计表格行数
+        ss+=rows
+        for num in range(0,rows):#逐行写入列表
+            dat=sheet.row_values(num)
+            df.append(dat)
+
+def data_write(df):#写入excel
+    workbook=xlsxwriter.Workbook(r'C:\Users\liuhu\Desktop\项目05多场景下的算法构建\数据汇总.xlsx')#选择新建excel路径
+    worksheet=workbook.add_worksheet('合并')#新建sheet
+    global ss
+    for num in range(1,ss):#逐行写入表格
+        worksheet.write_row('A%d'%num,df[num-1])
+    workbook.close()
+write_data=data_write(df)
+print('finish')
