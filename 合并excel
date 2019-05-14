@@ -2,9 +2,9 @@
 import os,xlrd,xlsxwriter
 global ss
 ss=0
-os.chdir(r'C:\Users\liuhu\Desktop\项目05多场景下的算法构建') #选择路径
+os.chdir(r'C:\Users\w\Desktop\项目05多场景下的算法构建') #选择路径
 df=[]
-list = os.listdir(r'C:\Users\liuhu\Desktop\项目05多场景下的算法构建')#选择路径遍历文件夹内表名
+list = os.listdir(r'C:\w\liuhu\Desktop\项目05多场景下的算法构建')#选择路径遍历文件夹内表名
 for book in list:
     data=xlrd.open_workbook(book)#打开表
     for s in data.sheet_names():#遍历表内工作簿
@@ -16,7 +16,7 @@ for book in list:
             df.append(dat)
 
 def data_write(df):#写入excel
-    workbook=xlsxwriter.Workbook(r'C:\Users\liuhu\Desktop\项目05多场景下的算法构建\数据汇总.xlsx')#选择新建excel路径
+    workbook=xlsxwriter.Workbook(r'C:\Users\w\Desktop\项目05多场景下的算法构建\数据汇总.xlsx')#选择新建excel路径
     worksheet=workbook.add_worksheet('合并')#新建sheet
     global ss
     for num in range(1,ss):#逐行写入表格
